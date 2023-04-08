@@ -3,6 +3,8 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "subsetSumGreedy.h"
+#include <chrono>
 #include "subsetSumBrute.h"
 
 using namespace std;
@@ -39,15 +41,37 @@ int main(int argc, char *argv[]) {
 
     // vector to hold elements included in subset sum
     // vector<int> result;
+    auto start = chrono::high_resolution_clock::now();
+    bool result = subsetSumBrute(arr, size, sum);
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-    if (subsetSumBrute(arr, size, sum)) {
-        cout << "Yes!" << endl;
+    if (result) {
+        cout << "Subset sum using brute force found with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
     }
     // if (subsetSum(arr, size, sum, &result)) {
     //     cout << "Yes!" << endl;
     // }
     else {
-        cout << "No :(" << endl;
+        cout << "No subset sum found using brute force with sum = " << sum << endl;
     }
+
+    start = chrono::high_resolution_clock::now();
+    result = subsetSumGreedy(arr, size, sum);
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (result) {
+        cout << "Subset sum using greedy algorithm found with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+    // if (subsetSum(arr, size, sum, &result)) {
+    //     cout << "Yes!" << endl;
+    // }
+    else {
+        cout << "No subset sum found using greedy algorithm with sum = " << sum << endl;
+    }
+
     return 0;
 }

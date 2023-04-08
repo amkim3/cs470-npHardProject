@@ -34,12 +34,6 @@ bool subsetSumBrute(vector<int> array, int size, int sum) {
             // Else, see if sum can be reached by either including the current element, or excluding it using recursion
             else {
                 cache[i][j] = cache[i-1][j] || cache[i-1][j-array[i-1]];
-                if (cache[i][j]) {
-                    // included[i][j] = true;
-                }
-                else {
-                    // included[i][j] = included[i-1][j];
-                }
             }
         }
     }
