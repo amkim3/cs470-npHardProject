@@ -13,7 +13,7 @@ bool subsetSumCombo(vector<int> array, int size, int sum) {
         srand(time(NULL));
         subsetNums.push_back(rand() % size);
     }
-    bool cache[newSize+1][sum+1];
+    vector<vector<bool>> cache(size+1, vector<bool>(sum+1));
     for (int i = 0; i <= newSize; i++) {
         cache[i][0] = true;
     }

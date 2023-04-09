@@ -6,6 +6,10 @@
 #include "subsetSumGreedy.h"
 #include <chrono>
 #include "subsetSumBrute.h"
+#include "subsetSumRandom.h"
+#include "subsetSumCombo.h"
+#include "subsetSumThread.h"
+
 
 using namespace std;
 
@@ -50,9 +54,6 @@ int main(int argc, char *argv[]) {
         cout << "Subset sum using brute force found with sum = " << sum << endl;
         cout << "Time: " << duration.count() << " microseconds" << endl;
     }
-    // if (subsetSum(arr, size, sum, &result)) {
-    //     cout << "Yes!" << endl;
-    // }
     else {
         cout << "No subset sum found using brute force with sum = " << sum << endl;
     }
@@ -66,11 +67,54 @@ int main(int argc, char *argv[]) {
         cout << "Subset sum using greedy algorithm found with sum = " << sum << endl;
         cout << "Time: " << duration.count() << " microseconds" << endl;
     }
-    // if (subsetSum(arr, size, sum, &result)) {
-    //     cout << "Yes!" << endl;
-    // }
+   
     else {
         cout << "No subset sum found using greedy algorithm with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+
+    start = chrono::high_resolution_clock::now();
+    result = subsetSumGreedy2(arr, size, sum);
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (result) {
+        cout << "Subset sum using greedy algorithm (+ threading) found with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+   
+    else {
+        cout << "No subset sum found using greedy algorithm (+ threading) with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+
+    start = chrono::high_resolution_clock::now();
+    result = subsetSumRandom(arr, size, sum);
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (result) {
+        cout << "Subset sum using random algorithm found with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+
+    else {
+        cout << "No subset sum found using random algorithm with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+
+    start = chrono::high_resolution_clock::now();
+    result = subsetSumCombo(arr, size, sum);
+    stop = chrono::high_resolution_clock::now();
+    duration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+
+    if (result) {
+        cout << "Subset sum using combo (greedy + random) algorithm found with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
+    }
+    else {
+        cout << "No subset sum found using combo (greedy + random) algorithm with sum = " << sum << endl;
+        cout << "Time: " << duration.count() << " microseconds" << endl;
     }
 
     return 0;
