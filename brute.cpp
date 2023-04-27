@@ -7,11 +7,6 @@
 using namespace std;
 
 bool subsetSumBrute(vector<long long int> array, int size, long long int sum, vector<long long int> &included, bool vc) {
-    
-    // long long int totalSum = accumulate(array.begin(), array.end(), 0); // if all numbers summed are smaller return false
-    // if (sum > totalSum) {
-    //     return false;
-    // }
 
     /* see the below example for how the cache works. the rows are elements in the array, and the columns are the numbers up to the sum.
     -- 0    1   2   3   ...     sum
@@ -25,7 +20,6 @@ bool subsetSumBrute(vector<long long int> array, int size, long long int sum, ve
     */
 
     vector<vector<bool>> cache(size+1, vector<bool>(sum+1)); // 2d cache that holds true of false for each element and sum
-
 
     // Initialize cache to be true if the sum that we're looking for is 0
     for (int i = 0; i <= size; i++) {
