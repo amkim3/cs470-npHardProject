@@ -1,0 +1,19 @@
+70008
+30000
+50000
+60000
+20000
+10000
+4000
+5000
+4000
+35004
+35004
+$
+The heuristic algorithm is unable to solve this the majority of the time. The reason being that the only numbers that add to the target sum are the two 35004 integers.
+Output:
+Subset sum using brute force found with sum = 70008
+Time: 26878 microseconds
+[ 35004 35004 ]
+No subset sum found using greedy algorithm with sum = 70008
+Time: 29 microseconds
