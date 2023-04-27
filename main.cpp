@@ -45,6 +45,7 @@ int main() {
             vector<long long int> arr; // read integers and store in array
             int num = 0;
             while (getline(f, line) && line != "$") {
+                if (line[0] == '$') break;
                 stringstream ss(line);
                 ss >> num;
                 arr.push_back(num);
@@ -144,6 +145,7 @@ int main() {
             int num2;
             int num3;
             while (getline(f, line) && line != "$") {
+                if (line[0] == '$') break;
                 stringstream ss(line);
                 ss >> num1 >> num2 >> num3;
                 ints.push_back(make_tuple(num1, num2, num3));

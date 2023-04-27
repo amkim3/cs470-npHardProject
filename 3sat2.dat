@@ -1,0 +1,14 @@
+6
+1 -2 -4
+2 3 5
+1 4 -6
+5 3 1
+-2 3 5
+$
+Output:
+Subset sum using brute force found with sum = 1398783
+Time: 988546 microseconds
+Subset sum using greedy algorithm found with sum = 1398783
+Time: 22 microseconds
+1398783
+The greedy algorithm is 988524 microseconds faster, or 44933x faster.

@@ -43,6 +43,7 @@ void vcToSs(string file, vector<long long int> &included) {
     int numEdges = 0;
     vector<pair<int, int>> edges;
     while (getline(f, line) && line != "$") {
+        if (line[0] == '$') break;
         stringstream ss(line);
         ss >> firstNum >> secondNum;
         g.edges[firstNum].push_back(secondNum);
