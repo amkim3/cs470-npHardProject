@@ -23,9 +23,11 @@ int main() {
         cout << "4 - exit" << endl;
         cout << "Enter a command: ";
         cin >> command;
+
         // read in file
-        if (command == 4) break;
-        else if (command == 1) {
+        if (command == 4) break; // exit
+
+        else if (command == 1) { // subset sum
             string file;
             cout << "Enter file to perform subset sum: ";
             cin >> file;
@@ -44,6 +46,8 @@ int main() {
             long int sum = stoi(line); // set sum equal to the first line
             vector<long long int> arr; // read integers and store in array
             int num = 0;
+
+            // add numbers to array
             while (getline(f, line) && line != "$") {
                 if (line[0] == '$') break;
                 stringstream ss(line);
@@ -56,30 +60,35 @@ int main() {
             int size = arr.size();
 
             vector<long long int> included; // vector to hold elements included in subset sum
-            auto start = chrono::high_resolution_clock::now();
+            auto start = chrono::high_resolution_clock::now(); // start timer
             bool result = subsetSumBrute(arr, size, sum, included);
-            auto stop = chrono::high_resolution_clock::now();
-            auto bruteDuration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            auto stop = chrono::high_resolution_clock::now(); // stop timer
+            auto bruteDuration = chrono::duration_cast<std::chrono::microseconds>(stop - start); // duration
 
+            // if subset sum was found
             if (result) {
                 cout << "Subset sum using brute force found with sum = " << sum << endl;
                 cout << "Time: " << bruteDuration.count() << " microseconds" << endl;
                 cout << "[ ";
-                for (int x : included) {
+                for (int x : included) { // print elements included to find subset sum
                     cout << x << ' ';
                 }
                 cout << "]" << endl;
             }
+
+            // if no subset sum was found
             else {
                 cout << "No subset sum found using brute force with sum = " << sum << endl;
             }
 
             included.clear(); // clear to run greedy algorithm
 
-            start = chrono::high_resolution_clock::now();
+            start = chrono::high_resolution_clock::now(); // start timer
             result = subsetSumGreedy(arr, size, sum, included);
-            stop = chrono::high_resolution_clock::now();
-            auto greedyDuration = chrono::duration_cast<std::chrono::microseconds>(stop - start);
+            stop = chrono::high_resolution_clock::now(); // stop timer
+            auto greedyDuration = chrono::duration_cast<std::chrono::microseconds>(stop - start); // duration
+
+            // if subset sum was found
             if (result) {
                 cout << "Subset sum using greedy algorithm found with sum = " << sum << endl;
                 cout << "Time: " << greedyDuration.count() << " microseconds" << endl;
@@ -105,7 +114,8 @@ int main() {
                     }
                 }
             }
-        
+
+            // if no subset sum was found
             else {
                 cout << "No subset sum found using greedy algorithm with sum = " << sum << endl;
                 cout << "Time: " << greedyDuration.count() << " microseconds" << endl;
