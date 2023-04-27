@@ -5,6 +5,6 @@
 
 using namespace std;
 
-bool subsetSumGreedy(vector<int> array, int size, int sum);
+bool subsetSumGreedy(vector<long long int> array, int size, long long int sum, vector<long long int> &included);
 
 #endif

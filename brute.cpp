@@ -6,12 +6,12 @@
 
 using namespace std;
 
-bool subsetSumBrute(vector<int> array, int size, int sum, vector<int> &included) {
+bool subsetSumBrute(vector<long long int> array, int size, long long int sum, vector<long long int> &included, bool vc) {
     
-    int totalSum = accumulate(array.begin(), array.end(), 0); // if all numbers summed are smaller return false
-    if (sum > totalSum) {
-        return false;
-    }
+    // long long int totalSum = accumulate(array.begin(), array.end(), 0); // if all numbers summed are smaller return false
+    // if (sum > totalSum) {
+    //     return false;
+    // }
 
     /* see the below example for how the cache works. the rows are elements in the array, and the columns are the numbers up to the sum.
     -- 0    1   2   3   ...     sum
@@ -38,8 +38,8 @@ bool subsetSumBrute(vector<int> array, int size, int sum, vector<int> &included)
     }
 
     for (int i = 1; i <= size; i++) { // i represents the size of array
-        for (int j = 1; j <=sum; j++) { // j is the sum
-            int currSum = j;
+        for (long int j = 1; j <=sum; j++) { // j is the sum
+            long int currSum = j;
             int currElement = array[i-1];
             // If currElement is bigger than currSum, set the value to the previous element
             if (currElement > currSum) {
@@ -54,7 +54,7 @@ bool subsetSumBrute(vector<int> array, int size, int sum, vector<int> &included)
 
     // This is to store the elements we used to find subset sum in the included vector, to print in main.cpp
     bool found = false;
-    for (int i = size, j = sum; i > 0 && !found; i--) {
+    for (long int i = size, j = sum; i > 0 && !found; i--) {
         if (cache[i][j] && !cache[i - 1][j]) {
             included.push_back(array[i - 1]);
             j -= array[i - 1];

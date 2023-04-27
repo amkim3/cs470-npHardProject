@@ -2,31 +2,43 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
+#include <stack> 
 
 using namespace std;
 
-bool subsetSumGreedy(vector<int> array, int size, int sum, vector<int> &included) {
-    sort(array.begin(), array.end(), greater<int>()); // Begin by sorting the array
+bool subsetSumGreedy(vector<long long int> array, int size, long long int sum, vector<long long int> &included) {
+    sort(array.begin(), array.end(), greater<long long int>()); // Begin by sorting the array
     while (array.back() == 0) {
         array.pop_back();
     }
-    int remaining = sum; // Remaining will be sum at start
-    int j = lower_bound(array.begin(), array.end(), remaining, greater<int>()) - array.begin(); // j is where we start (finds the largest element <= remaining)
+    long long int remaining = sum; // Remaining will be sum at start
+    int j = lower_bound(array.begin(), array.end(), remaining, greater<long long int>()) - array.begin(); // j is where we start (finds the largest element <= remaining)
     int smallest = array.back();     // smallest makes sure that we don't remove the smallest int in the array when we can't find the sum
     int newSize = 0; // size of included
     int dontAddBack = -1; // don't add back the element that we removed when we do random removal
+    stack<int> randNums;
     for (int i = j; i < size;i++) { // Loop through sorted array
         // cout << "Next. i is at " << i << ". size of array is " << array.size() << ". array[i] is " << array[i] << ". remaining is " << remaining << endl;
-        bool removed = false;
+        // bool removed = false;
         srand(time(0)); // initialize the random seed
         int start = 0;
         int end;
         // if (it > 20) return false;
         if (remaining < array.back()) {
             // removed = true;
+            // srand(time(0));
             start = 0;
             end = newSize;
-            int randomIndex = start + (rand() % (end - start)); 
+            // cout << newSize << endl;
+            long int randomIndex = start + (rand() % (end - start)); 
+            if (!randNums.empty()) {
+                while (randNums.top() == randomIndex) {
+                    // randNums.pop();
+                    // randomIndex--;
+                    randomIndex = start + (rand() % (end - start)); 
+                }
+            }
+            randNums.push(randomIndex);
             if (included.at(randomIndex) == smallest) { // if the random element to be removed is smallest, take the next element largest to it
                 randomIndex--;
                 if (randomIndex < 0) return false;
@@ -81,7 +93,7 @@ bool subsetSumGreedy(vector<int> array, int size, int sum, vector<int> &included
             int idx = lower_bound(array.begin() + i, array.end(), remaining, greater<int>()) - array.begin();
             // if the new index isn't at the end and it is equal to the remaining
             if (static_cast<size_t>(idx) == array.size()) return false;
-            while (array[idx] == dontAddBack && idx != array.size()) {
+            while (array[idx] == dontAddBack && (size_t)(idx) != (array.size())) {
                 idx++;
             }
             if (array[idx] <= remaining) {
