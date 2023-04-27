@@ -1,0 +1,11 @@
+6 3
+0 1
+1 2
+2 3
+3 4
+4 5
+$
+Subset sum using brute force found with sum = 15018 and k = 3
+Time: 5974 microseconds
+No subset sum found using greedy algorithm with sum = 15018
+Time: 28 microseconds

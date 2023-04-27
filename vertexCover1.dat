@@ -1,0 +1,13 @@
+4 2
+0 1 1
+0 2 1
+1 2 1
+1 3 1
+$
+Output:
+Subset sum using brute force found with sum = 2730 and k = 2
+Time: 1422 microseconds
+Subset sum using greedy algorithm found with sum = 2730 and k = 2
+Time: 21 microseconds
+2730
+The greedy algorithm is 1401 microseconds faster, or 67x faster.

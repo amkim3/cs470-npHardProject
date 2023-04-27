@@ -1,0 +1,14 @@
+5
+-1 2 3
+-2 1 3
+-3 1 2
+-4 1 2
+-5 1 2
+-1 2 4
+-2 1 4
+$
+Output:
+Subset sum using brute force found with sum = 5603327
+Time: 4274464 microseconds
+No subset sum found using greedy algorithm with sum = 5603327
+Time: 50 microseconds
